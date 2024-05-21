@@ -48,5 +48,12 @@ jobs:
         run: npx playwright install
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test --reporter=list
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
 
